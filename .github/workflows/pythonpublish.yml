@@ -29,6 +29,7 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_LIFELINES_UPLOAD_API_KEY }}
       run: |
         python setup.py sdist bdist_wheel
+        pip install pytest
         twine upload dist/*
         pytest
 
