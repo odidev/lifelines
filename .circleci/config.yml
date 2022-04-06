@@ -26,7 +26,7 @@ jobs:
              python3 -m pip install --upgrade pip
              pip3 install setuptools wheel twine
              python3 setup.py sdist bdist_wheel
-             pip3 install pytest sybil flaky sklearn dill
+             pip3 install pytest sybil flaky sklearn dill seaborn
              pytest
 workflows:
   version: 2.1
