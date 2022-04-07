@@ -30,11 +30,33 @@ jobs:
              pip3 install pytest sybil flaky sklearn dill seaborn
              pytest
              
+  build-medium-amd64:
+    machine:
+      image: ubuntu-2004:202101-01
+   
+    working_directory: ~/python-lz4
+    steps:
+      
+      
+      - checkout
+      - run:
+          name: ️️🏗️ pip dev requirements
+          command: |
+            uname -m
+            sudo apt-get install python3 && sudo apt-get install python3-pip
+            pip3 install --upgrade pip
+            python3 setup.py install 
+            python3 -m pip install --upgrade pip
+            pip3 install setuptools wheel twine
+            python3 setup.py sdist bdist_wheel
+            pip3 install pytest sybil flaky sklearn dill seaborn
+            pytest          
 workflows:
   version: 2.1
   main:
     jobs:
       - manylinux2014-aarch64:
+      - build-medium-amd64:
           matrix:
             parameters:
               cibw_build:
